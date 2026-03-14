@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "id": "user-admin-1",
+      "name": "Admin",
+      "email": "admin@springs.estate",
+      "password": "$2b$10$CcRDyfw3gPVNGPwQqIpsOuFEHPw7ccQBjWINnypP/W6LmgGYFLXkK",
+      "role": "admin",
+      "createdAt": "2026-03-14T13:44:11.969Z"
+    }
+  ],
+  "properties": [
+    {
+      "id": "prop-1",
+      "title": "Springs Luxury Villa",
+      "type": "Villa",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "area": 3500,
+      "price": 2500000,
+      "location": "Springs Estate, Dubai",
+      "description": "Exquisite 4-bedroom villa with panoramic garden views, private pool, and premium finishes throughout.",
+      "image": "",
+      "featured": true,
+      "status": "available",
+      "createdAt": "2026-03-14T00:00:00.000Z"
+    },
+    {
+      "id": "prop-2",
+      "title": "Garden Terrace Apartment",
+      "type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "area": 1800,
+      "price": 950000,
+      "location": "Springs Estate, Dubai",
+      "description": "Modern 2-bedroom apartment with spacious terrace overlooking lush gardens and premium amenities.",
+      "image": "",
+      "featured": false,
+      "status": "available",
+      "createdAt": "2026-03-14T00:00:00.000Z"
+    },
+    {
+      "id": "prop-3",
+      "title": "Penthouse Suite",
+      "type": "Penthouse",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "area": 4200,
+      "price": 4800000,
+      "location": "Springs Estate, Dubai",
+      "description": "Stunning penthouse with 360-degree views, private elevator access, and world-class interior design.",
+      "image": "",
+      "featured": true,
+      "status": "sold",
+      "createdAt": "2026-03-14T00:00:00.000Z"
+    }
+  ],
+  "inquiries": [
+    {
+      "id": "inq-1",
+      "name": "John Smith",
+      "email": "john@example.com",
+      "phone": "+971-50-123-4567",
+      "property": "Springs Luxury Villa",
+      "message": "I'm interested in scheduling a viewing for the luxury villa. Is it available this weekend?",
+      "status": "new",
+      "createdAt": "2026-03-13T10:30:00.000Z"
+    },
+    {
+      "id": "inq-2",
+      "name": "Sarah Johnson",
+      "email": "sarah@example.com",
+      "phone": "+971-55-987-6543",
+      "property": "Garden Terrace Apartment",
+      "message": "Could you provide more details about the payment plan for the Garden Terrace Apartment?",
+      "status": "read",
+      "createdAt": "2026-03-12T14:15:00.000Z"
+    }
+  ]
+}

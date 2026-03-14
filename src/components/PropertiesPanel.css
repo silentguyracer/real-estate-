@@ -1,0 +1,106 @@
+.properties-section {
+  width: 100vw;
+  min-height: 150vh; /* Stretch to slow down 3D background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 150px var(--section-padding);
+  background: linear-gradient(180deg, rgba(48, 65, 77, 0.45) 0%, rgba(26, 42, 33, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.properties-header {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.properties-title {
+  font-size: clamp(40px, 6vw, 80px);
+  color: var(--text-gold);
+  margin-bottom: 20px;
+}
+
+.properties-subtitle {
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.property-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.4s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-10px);
+}
+
+.property-img-wrapper {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 8px;
+}
+
+.property-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.property-name {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 2vw, 36px);
+  color: var(--text-white);
+  margin: 0;
+}
+
+.property-specs {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.property-price {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: var(--text-gold);
+  margin-top: 5px;
+}
+
+.property-btn {
+  margin-top: 15px;
+  align-self: flex-start;
+  padding: 12px 24px;
+  border: 1px solid var(--text-gold);
+  color: var(--text-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.property-btn:hover {
+  background-color: var(--text-gold);
+  color: var(--bg-dark-green);
+}
+
+@media (max-width: 1024px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+}

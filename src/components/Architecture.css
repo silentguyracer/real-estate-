@@ -1,0 +1,68 @@
+.architecture-section {
+  width: 100vw;
+  min-height: 120vh; /* Extra height to stretch scroll */
+  display: flex;
+  align-items: center;
+  padding: 100px var(--section-padding);
+  background-color: rgba(15, 25, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.arch-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.arch-title {
+  font-size: clamp(60px, 12vw, 160px);
+  color: var(--text-gold);
+  margin-bottom: 80px;
+  opacity: 0.9;
+}
+
+.arch-columns {
+  display: flex;
+  gap: 10vw;
+  justify-content: space-between;
+}
+
+.arch-col1 {
+  flex: 1;
+  max-width: 500px;
+}
+
+.arch-col2 {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.arch-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3vw, 42px);
+  color: var(--text-white);
+  line-height: 1.3;
+}
+
+.arch-col2 p {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: var(--text-dim);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .architecture-section {
+    min-height: 100vh;
+  }
+  .arch-columns {
+    flex-direction: column;
+    gap: 40px;
+  }
+}

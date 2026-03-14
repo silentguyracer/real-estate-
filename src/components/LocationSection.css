@@ -1,0 +1,101 @@
+.location-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(26, 42, 33, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.location-left {
+  flex: 1.5;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-img-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+/* Optional vignette/gradient on the image to blend into the green */
+.location-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(26, 42, 33, 0.45) 0%, transparent 100%);
+}
+
+.location-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-padding);
+}
+
+.location-right-content {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-image-box {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.location-image-box.img-placeholder {
+  min-height: 200px;
+}
+
+.location-text-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.location-number {
+  font-family: var(--font-serif);
+  font-size: clamp(100px, 15vw, 180px);
+  color: var(--text-gold);
+  line-height: 0.8;
+  margin-left: -10px; /* pull left to align optically */
+}
+
+.location-desc {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-gold);
+  text-align: right;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .location-section {
+    flex-direction: column;
+    height: auto;
+  }
+  .location-left {
+    height: 50vh;
+  }
+  .location-right {
+    padding: 80px var(--section-padding);
+  }
+  .location-text-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .location-desc {
+    text-align: left;
+  }
+}

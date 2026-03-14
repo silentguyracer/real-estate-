@@ -1,0 +1,13 @@
+.app-container {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-primary);
+}

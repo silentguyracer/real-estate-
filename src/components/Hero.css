@@ -1,0 +1,115 @@
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Parallax height */
+  z-index: -2;
+  will-change: transform;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* The exact dark green / blue gradient overlay from screenshot */
+.hero-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(15, 30, 25, 0.4) 0%, var(--bg-dark-green) 100%);
+}
+
+.hero-content {
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--section-padding);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-text-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--text-white);
+  max-width: 400px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  transform: translateY(-50px);
+}
+
+.hero-title {
+  font-size: clamp(80px, 11vw, 150px);
+  text-align: right;
+  color: var(--text-gold);
+}
+
+.title-word {
+  display: inline-block;
+}
+
+.title-word.offset {
+  color: var(--text-white); /* The "of Renewal" might be white or gold, let's use gold for both to match */
+  color: var(--text-gold);
+}
+
+.hero-bottom-left {
+  position: absolute;
+  bottom: 40px;
+  left: var(--section-padding);
+}
+
+.scroll-down-btn {
+  color: var(--text-gold);
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-down-btn:hover {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+@media (max-width: 900px) {
+  .hero-text-container {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 40px;
+    padding-bottom: 120px;
+  }
+  .hero-subtitle {
+    transform: none;
+    order: 2;
+  }
+  .hero-title {
+    text-align: left;
+    order: 1;
+  }
+}

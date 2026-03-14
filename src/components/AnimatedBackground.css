@@ -1,0 +1,39 @@
+.animated-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.frame-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Instant switch when scrolling, no transition */
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  /* Keep a subtle darkening so the text remains very legible */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 30, 25, 0.45) 0%,
+    rgba(15, 25, 20, 0.7) 60%,
+    rgba(10, 15, 12, 0.9) 100%
+  );
+}
