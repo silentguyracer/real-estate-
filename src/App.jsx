@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -16,13 +16,30 @@ import LocationSection from './components/LocationSection';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 
-import Login from './pages/Login';
-import AdminDashboard from './pages/AdminDashboard';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-import CookiePolicy from './pages/CookiePolicy';
+// Lazy load page components
+const Login = lazy(() => import('./pages/Login'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
 
 import './App.css';
+
+// Loading fallback components
+const PageLoader = () => (
+  <div style={{ 
+    height: '100vh', 
+    width: '100vw', 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    background: '#0a0a0a',
+    color: '#c5a059',
+    fontFamily: 'Outfit, sans-serif'
+  }}>
+    <div className="loader-text">SPLENDOR</div>
+  </div>
+);
 
 function HomePage() {
   useEffect(() => {
@@ -69,23 +86,25 @@ function App() {
 
   return (
     <AuthProvider>
-      {isAdminRoute ? (
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/cookies" element={<CookiePolicy />} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
-      )}
+      <Suspense fallback={<PageLoader />}>
+        {isAdminRoute ? (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookies" element={<CookiePolicy />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        )}
+      </Suspense>
     </AuthProvider>
   );
 }

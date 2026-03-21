@@ -3,25 +3,25 @@ import './AnimatedBackground.css';
 
 // Build frame paths from all three video frame folders in order:
 // 1. "first video frames"  → 300 frames (ezgif-frame-001..300)
-// 2. "second video frames" → 300 frames (ezgif-frame-001..300)
-// 3. "thired video frame"  → 141 frames (ezgif-frame-001..141)
+// 2. "second video frames" → ~100 frames (every 3rd)
+// 3. "thired video frame"  → ~47 frames (every 3rd)
 const buildFramePaths = () => {
   const frames = [];
 
-  // First video frames (300 images)
-  for (let i = 1; i <= 300; i++) {
+  // First video frames (300 images) - use every 3rd frame
+  for (let i = 1; i <= 300; i += 3) {
     const num = String(i).padStart(3, '0');
     frames.push(`/REAL_ESTATE_frames/first video frames/ezgif-frame-${num}.jpg`);
   }
 
-  // Second video frames (300 images)
-  for (let i = 1; i <= 300; i++) {
+  // Second video frames (300 images) - use every 3rd frame
+  for (let i = 1; i <= 300; i += 3) {
     const num = String(i).padStart(3, '0');
     frames.push(`/REAL_ESTATE_frames/second video frames/ezgif-frame-${num}.jpg`);
   }
 
-  // Third video frame (141 images)
-  for (let i = 1; i <= 141; i++) {
+  // Third video frame (141 images) - use every 3rd frame
+  for (let i = 1; i <= 141; i += 3) {
     const num = String(i).padStart(3, '0');
     frames.push(`/REAL_ESTATE_frames/thired video frame/ezgif-frame-${num}.jpg`);
   }
@@ -30,7 +30,7 @@ const buildFramePaths = () => {
 };
 
 const ALL_FRAMES = buildFramePaths();
-const TOTAL = ALL_FRAMES.length; // 741 total frames
+const TOTAL = ALL_FRAMES.length; // ~247 total frames (3x reduction)
 
 /**
  * Optimized AnimatedBackground using a two-slot swap technique.

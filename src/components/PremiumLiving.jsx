@@ -46,6 +46,7 @@ const PremiumLiving = () => {
                   src={image.src}
                   alt={image.alt}
                   className={`premium-image ${index === activeIndex ? 'active' : ''}`}
+                  loading="lazy"
                 />
               ))}
             </div>

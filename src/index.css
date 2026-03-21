@@ -75,7 +75,31 @@ button {
   transform: translateY(0);
 }
 
-/* ── Global image placeholder ── */
+/* Performance Optimizations */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}
+
+/* Sections in the initial viewport should NOT have content-visibility: auto */
+.hero-section, .architecture-section {
+  content-visibility: visible;
+}
+
+/* Loader Styling */
+.loader-text {
+  font-size: 2.5rem;
+  letter-spacing: 12px;
+  font-weight: 300;
+  animation: pulse-gold 2s infinite ease-in-out;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 0.4; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Global image placeholder ── */
 .img-placeholder {
   display: flex;
   align-items: center;
@@ -84,6 +108,7 @@ button {
   background: rgba(26, 42, 33, 0.25);
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 .img-placeholder::before {
