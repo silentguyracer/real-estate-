@@ -11,9 +11,9 @@ const Footer = () => {
         </h2>
         <div className="footer-contact">
           <p>Get in touch with our team to explore availability.</p>
-          <a href="mailto:info@springs.estate" className="contact-link fade-in">info@springs.estate</a>
+          <a href="MAIL INFO" className="contact-link fade-in">EMAIL ADDRESS</a>
           <br />
-          <a href="tel:+1234567890" className="contact-link fade-in">+1 (234) 567-890</a>
+          <a href="tel:+91" className="contact-link fade-in">+91 567900000</a>
         </div>
       </div>
       
@@ -29,7 +29,8 @@ const Footer = () => {
           <a href="#">LinkedIn</a>
         </div>
         <div className="footer-copyright">
-          &copy; {new Date().getFullYear()} Springs Estate. All rights reserved.
+          &copy; {new Date().getFullYear()} Springs Estate. All rights reserved.<br></br>
+         <h2> Created By Sahil Kumar .</h2>
         </div>
       </div>
     </footer>

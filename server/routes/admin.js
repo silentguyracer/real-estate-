@@ -1,25 +1,12 @@
 import { Router } from 'express';
-import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readDB, writeDB } from '../db.js';
 import { authenticate, requireAdmin } from '../middleware/auth.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DB_PATH = join(__dirname, '..', 'data', 'db.json');
 
 const router = Router();
 
 // All admin routes require authentication + admin role
 router.use(authenticate);
 router.use(requireAdmin);
-
-function readDB() {
-  return JSON.parse(readFileSync(DB_PATH, 'utf-8'));
-}
-
-function writeDB(data) {
-  writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
 
 // ============ PROPERTIES ============
 
@@ -137,20 +124,27 @@ router.delete('/inquiries/:id', (req, res) => {
 // GET /api/admin/stats
 router.get('/stats', (req, res) => {
   const db = readDB();
-  const totalProperties = db.properties.length;
-  const availableProperties = db.properties.filter(p => p.status === 'available').length;
-  const soldProperties = db.properties.filter(p => p.status === 'sold').length;
-  const totalInquiries = db.inquiries.length;
+
+  // Single-pass reduce over properties instead of 3 separate .filter() calls
+  const propStats = db.properties.reduce(
+    (acc, p) => {
+      acc.totalValue += p.price || 0;
+      if (p.status === 'available') acc.available++;
+      else if (p.status === 'sold') acc.sold++;
+      return acc;
+    },
+    { totalValue: 0, available: 0, sold: 0 }
+  );
+
   const newInquiries = db.inquiries.filter(i => i.status === 'new').length;
-  const totalValue = db.properties.reduce((sum, p) => sum + (p.price || 0), 0);
 
   res.json({
-    totalProperties,
-    availableProperties,
-    soldProperties,
-    totalInquiries,
+    totalProperties: db.properties.length,
+    availableProperties: propStats.available,
+    soldProperties: propStats.sold,
+    totalInquiries: db.inquiries.length,
     newInquiries,
-    totalValue
+    totalValue: propStats.totalValue
   });
 });
 

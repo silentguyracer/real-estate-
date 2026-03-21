@@ -8,6 +8,7 @@ import Hero from './components/Hero';
 import Architecture from './components/Architecture';
 import PremiumLiving from './components/PremiumLiving';
 import PropertiesPanel from './components/PropertiesPanel';
+import Gallery from './components/Gallery';
 import Amenities from './components/Amenities';
 import NatureSection from './components/NatureSection';
 import TerracesSection from './components/TerracesSection';
@@ -51,6 +52,7 @@ function HomePage() {
         <Architecture />
         <PremiumLiving />
         <PropertiesPanel />
+        <Gallery />
         <Amenities />
         <NatureSection />
         <TerracesSection />

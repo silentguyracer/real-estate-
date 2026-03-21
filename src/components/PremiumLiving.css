@@ -42,23 +42,108 @@
 .premium-image-right {
   flex: 1.2;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   position: relative;
 }
 
 .premium-image-container {
   width: 100%;
   max-width: 700px;
-  /* Clip an abstract shape or leave standard */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+  position: relative;
 }
 
-.premium-image-container.img-placeholder {
-  aspect-ratio: 3/4;
+/* Carousel */
+.premium-carousel {
+  position: relative;
+  width: 100%;
   height: clamp(400px, 55vh, 700px);
-  border-radius: 10px;
+  overflow: hidden;
+}
+
+.premium-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  pointer-events: none;
+}
+
+.premium-image.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Arrow Buttons */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 195, 160, 0.5);
+  background: rgba(26, 42, 33, 0.6);
+  backdrop-filter: blur(6px);
+  color: var(--text-gold, #d4c3a0);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(26, 42, 33, 0.85);
+  border-color: rgba(212, 195, 160, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-left {
+  left: 12px;
+}
+
+.carousel-arrow-right {
+  right: 12px;
+}
+
+/* Dot Navigation */
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 195, 160, 0.5);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot:hover {
+  border-color: rgba(212, 195, 160, 0.9);
+  background: rgba(212, 195, 160, 0.3);
+}
+
+.carousel-dot.active {
+  background: var(--text-gold, #d4c3a0);
+  border-color: var(--text-gold, #d4c3a0);
+  transform: scale(1.25);
 }
 
 @media (max-width: 900px) {
@@ -66,5 +151,18 @@
     flex-direction: column;
     text-align: center;
     gap: 80px;
+  }
+
+  .carousel-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .carousel-arrow-left {
+    left: 8px;
+  }
+
+  .carousel-arrow-right {
+    right: 8px;
   }
 }

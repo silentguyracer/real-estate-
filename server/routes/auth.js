@@ -1,24 +1,12 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readDB, writeDB } from '../db.js';
 import { authenticate } from '../middleware/auth.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DB_PATH = join(__dirname, '..', 'data', 'db.json');
 const JWT_SECRET = process.env.JWT_SECRET || 'springs-estate-secret-key-2026';
 
 const router = Router();
-
-function readDB() {
-  return JSON.parse(readFileSync(DB_PATH, 'utf-8'));
-}
-
-function writeDB(data) {
-  writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
@@ -49,12 +37,7 @@ router.post('/login', async (req, res) => {
 
     res.json({
       token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role
-      }
+      user: { id: user.id, name: user.name, email: user.email, role: user.role }
     });
   } catch (err) {
     console.error('Login error:', err);
@@ -96,12 +79,7 @@ router.post('/register', async (req, res) => {
 
     res.status(201).json({
       token,
-      user: {
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        role: newUser.role
-      }
+      user: { id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role }
     });
   } catch (err) {
     console.error('Registration error:', err);
@@ -118,12 +96,7 @@ router.get('/me', authenticate, (req, res) => {
     return res.status(404).json({ error: 'User not found.' });
   }
 
-  res.json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role
-  });
+  res.json({ id: user.id, name: user.name, email: user.email, role: user.role });
 });
 
 export default router;
